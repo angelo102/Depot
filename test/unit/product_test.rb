@@ -38,7 +38,7 @@ class ProductTest < ActiveSupport::TestCase
   def new_product(image_url)
     Product.new(
       :title => "My Book Title",
-      :description => "yyy",
+      :description => "yyyyyyyyyyyyyyyyyyyyyyy",
       :price => 1,
       :image_url => image_url)
   end
@@ -58,8 +58,8 @@ class ProductTest < ActiveSupport::TestCase
   end
 
   test "product is not valid without a unique title" do
-    prouct = Product.new(:title => products(:ruby).title,
-                         :description => "yyy",
+    product = Product.new(:title => products(:ruby).title,
+                         :description => "yyyyyyyyyyyyyyyy",
                          :price => 1,
                          :image_url => "fred.gif")
     assert !product.save
@@ -68,13 +68,12 @@ class ProductTest < ActiveSupport::TestCase
 
   test "product is not valid without a unique title - i18n" do
     product = Product.new(:title => products(:ruby).title,
-                          :description => "yyy",
+                          :description => "yyyyyyyyyyyyyyyy",
                           :price => 1,
                           :image_url => "fred.gif")
 
     assert !product.save
-    assert_equal I18n.translate('activerecord.errors.messages.taken'),
-    product.errors[:title].join('; ')
+    assert_equal I18n.translate('activerecord.errors.messages.taken'), product.errors[:title].join('; ')
   end
 
 
